@@ -191,71 +191,158 @@ done
 # Read the input
 read -p "Enter your choice: " choice
 
-# Check the input
+# Check the input and show the submenu or exit the script with a case statement.
 
-# If the input is not a number, show an error message
-if ! [[ $choice =~ ^[0-9]+$ ]]; then
-    echo "Error: Invalid input"
-    exit 1
-fi
+case $choice in
+    0)
+        # Show the submenu
+        echo "System Menu"
+        echo "==========="
+        echo "Select a task:"
+        for (( i=0; i<${#SYSTEM[@]}; i++ )); do
+            echo "$i) ${SYSTEM[$i]}"
+        done
 
-# If the input is not in the range of the array, show an error message
-if [ $choice -lt 0 ] || [ $choice -gt ${#SUBMENUS[@]} ]; then
-    echo "Error: Invalid input"
-    exit 1
-fi
+        # Read the input
+        read -p "Enter your choice: " choice
 
-# If the input is 4, exit the script
-if [ $choice -eq 4 ]; then
-    echo "Bye"
-    exit 0
-fi
+        # Check the input and execute the task or exit the script with a case statement.
+        case $choice in
+            0)
+                system_info
+                ;;
+            1)
+                disk_usage
+                ;;
+            2)
+                memory_usage
+                ;;
+            3)
+                show_process
+                ;;
+            4)
+                exit
+                ;;
+            *)
+                echo "Invalid input"
+                ;;
+        esac
+        ;;
+    1)
+        # Show the submenu
+        echo "Network Menu"
+        echo "==========="
+        echo "Select a task:"
+        for (( i=0; i<${#NETWORK[@]}; i++ )); do
+            echo "$i) ${NETWORK[$i]}"
+        done
 
-# Define the submenu
+        # Read the input
+        read -p "Enter your choice: " choice
 
-# Show the submenu
-echo "Submenu: ${SUBMENUS[$choice]}"
-echo "========="
-echo "Select a task:"
-for (( i=0; i<${#SUBMENUS[@]}; i++ )); do
-    echo "$i) ${!SUBMENUS[$choice]}[$i]"
-done
+        # Check the input and execute the task or exit the script with a case statement.
+        case $choice in
+            0)
+                network_info
+                ;;
+            1)
+                network_usage
+                ;;
+            2)
+                modify_ip
+                ;;
+            3)
+                exit
+                ;;
+            *)
+                echo "Invalid input"
+                ;;
+        esac
+        ;;
+    2)
+        # Show the submenu
+        echo "Users Menu"
+        echo "==========="
+        echo "Select a task:"
+        for (( i=0; i<${#USERS[@]}; i++ )); do
+            echo "$i) ${USERS[$i]}"
+        done
 
-# Read the input
-read -p "Enter your choice: " choice
+        # Read the input
+        read -p "Enter your choice: " choice
 
-# Check the input
+        # Check the input and execute the task or exit the script with a case statement.
+        case $choice in
+            0)
+                list_users
+                ;;
+            1)
+                add_user
+                ;;
+            2)
+                modify_user
+                ;;
+            3)
+                delete_user
+                ;;
+            4)
+                who_is_connected
+                ;;
+            5)
+                exit
+                ;;
+            *)
+                echo "Invalid input"
+                ;;
+        esac
+        ;;
+    3)
+        # Show the submenu
+        echo "Services Menu"
+        echo "==========="
+        echo "Select a task:"
+        for (( i=0; i<${#SERVICES[@]}; i++ )); do
+            echo "$i) ${SERVICES[$i]}"
+        done
 
-# If the input is not a number, show an error message
-if ! [[ $choice =~ ^[0-9]+$ ]]; then
-    echo "Error: Invalid input"
-    exit 1
-fi
+        # Read the input
+        read -p "Enter your choice: " choice
 
-# If the input is not in the range of the array, show an error message
-if [ $choice -lt 0 ] || [ $choice -gt ${#SUBMENUS[@]} ]; then
-    echo "Error: Invalid input"
-    exit 1
-fi
-
-# If the input is 4, exit the script
-if [ $choice -eq 4 ]; then
-    echo "Bye"
-    exit 0
-fi
-
-# Call the function
-${!SUBMENUS[$choice]}[$choice]
-
-# Exit the script
-exit 0
-
-
-
-# Define the exit function
-function exit {
-    echo "Exit"
-
-    # Exit the script
-    exit 0
-}
+        # Check the input and execute the task or exit the script with a case statement.
+        case $choice in
+            0)
+                service_info
+                ;;
+            1)
+                service_usage
+                ;;
+            2)
+                show_specific_process
+                ;;
+            3)
+                kill_process
+                ;;
+            4)
+                start_service
+                ;;
+            5)
+                restart_service
+                ;;
+            6)
+                stop_service
+                ;;
+            7)
+                exit
+                ;;
+            *)
+                echo "Invalid input"
+                ;;
+        esac
+        ;;
+    4)
+        exit
+        ;;  
+    *)
+        echo "Invalid input"
+        ;;
+esac
