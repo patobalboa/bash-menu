@@ -207,18 +207,37 @@ function back_main_menu {
 }
 
 
-# Define the main menu
+# Define function for the main menu
 
-# Show the main menu
-echo "Main Menu"
-echo "========="
-echo "Select a submenu:"
-for (( i=0; i<${#SUBMENUS[@]}; i++ )); do
-    echo "$i) ${SUBMENUS[$i]}"
-done
+function main_menu {
 
-# Read the input
-read -p "Enter your choice: " choice
+    # Clear the screen if the script is run for the first time.
+    if [ $first_run -eq 1 ]; then
+        clear
+    fi
+
+    # Show the main menu
+    echo "Main Menu"
+    echo "Select a submenu:"
+
+    # Show the submenus
+    for (( i=0; i<${#SUBMENUS[@]}; i++ )); do
+        echo "$((i+1)) - ${SUBMENUS[$i]}"
+    done
+
+    # Read the input
+    read -p "Enter your choice: " choice
+
+    # Call the submenu
+    case $choice in
+        1) system_menu ;;
+        2) network_menu ;;
+        3) users_menu ;;
+        4) services_menu ;;
+        5) exit ;;
+        *) echo "Invalid choice" && sleep 2 && main_menu ;;
+    esac
+}
 
 # Check the input and show the submenu or exit the script with a case statement.
 
