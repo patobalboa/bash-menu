@@ -30,5 +30,5 @@ $ ./menu.sh -e
 
 ## Powered by
 
-[![Powered by Codeplus](https://img.shields.io/badge/Powered%20by-Bash--Menu-blue.svg)](Codeplus)
+[![Powered by Codeplus](https://img.shields.io/badge/Powered%20by-Codeplus-blue.svg)](Codeplus)
 
