@@ -14,10 +14,10 @@
 SUBMENUS=( "System" "Network" "Users" "Services" "Exit" )
 
 # Define the tasks for the submenus
-SYSTEM=( "System Info" "Disk Usage" "Memory Usage" "Show Process" "Exit" )
-NETWORK=( "Network Info" "Network Usage" "Modify IP" "Exit" )
-USERS=("List Users" "Add User" "Modify User" "Delete User" "Who is connected" "Exit" )
-SERVICES=( "Service Info" "Service Usage" "Show specific process" "Kill Process" "Start Service" "Restart Service" "Stop Service" "Exit" )
+SYSTEM=( "System Info" "Disk Usage" "Memory Usage" "Show Process" "Back Main Menu" "Exit" )
+NETWORK=( "Network Info" "Network Usage" "Modify IP" "Back Main Menu"  "Exit" )
+USERS=("List Users" "Add User" "Modify User" "Delete User" "Who is connected" "Back Main Menu"  "Exit" )
+SERVICES=( "Service Info" "Service Usage" "Show specific process" "Kill Process" "Start Service" "Restart Service" "Stop Service" "Back Main Menu" "Exit" )
 
 # Define the functions for the tasks
 function system_info {
@@ -25,6 +25,7 @@ function system_info {
 
     # Show the system info
     uname -a
+    main_menu
 
 }
 
@@ -33,6 +34,7 @@ function disk_usage {
 
     # Show the disk usage
     df -h
+    main_menu
 }
 
 function memory_usage {
@@ -40,6 +42,7 @@ function memory_usage {
 
     # Show the memory usage
     free -m
+    main_menu
 }
 
 function show_process {
@@ -47,6 +50,7 @@ function show_process {
 
     # Show the process in live
     top
+    main_menu
 }
 
 function network_info {
@@ -54,6 +58,7 @@ function network_info {
 
     # Show the network info
     ifconfig
+    main_menu
 }
 
 function network_usage {
@@ -61,6 +66,7 @@ function network_usage {
 
     # Show the network usage
     netstat -tulpn
+    main_menu
 }
 
 function modify_ip {
@@ -82,6 +88,7 @@ function modify_ip {
 
     # Restart the network
     /etc/init.d/networking restart
+    main_menu
 }
 
 function add_user {
@@ -90,6 +97,7 @@ function add_user {
     # Add a user
     read -p "Enter the username: " username
     useradd $username
+    main_menu
 }
 
 function modify_user {
@@ -98,6 +106,7 @@ function modify_user {
     # Modify a user
     read -p "Enter the username: " username
     passwd $username
+    main_menu
 }
 
 function delete_user {
@@ -106,6 +115,7 @@ function delete_user {
     # Delete a user
     read -p "Enter the username: " username
     userdel $username
+    main_menu
 }
 
 function list_users {
@@ -113,6 +123,7 @@ function list_users {
 
     # List the users
     cat /etc/passwd
+    main_menu
 }
 
 function who_is_connected {
@@ -120,6 +131,7 @@ function who_is_connected {
 
     # Show who is connected
     who
+    main_menu
 }
 
 
@@ -129,6 +141,7 @@ function service_info {
 
     # Show the service info
     service --status-all
+    main_menu
 }
 
 function service_usage {
@@ -136,6 +149,7 @@ function service_usage {
 
     # Show the service usage
     ps -ef
+    main_menu
 }
 
 function show_specific_process {
@@ -144,6 +158,7 @@ function show_specific_process {
     # Show a specific process
     read -p "Enter the process name: " process
     ps -ef | grep $process
+    main_menu
 }
 
 function kill_process {
@@ -152,6 +167,7 @@ function kill_process {
     # Kill a process
     read -p "Enter the process name: " process
     killall $process
+    main_menu
 }
 
 function start_service {
@@ -160,6 +176,7 @@ function start_service {
     # Start a service
     read -p "Enter the service name: " service
     service $service start
+    main_menu
 }
 
 function restart_service {
@@ -168,6 +185,8 @@ function restart_service {
     # Restart a service
     read -p "Enter the service name: " service
     service $service restart
+
+    main_menu
 }
 
 function stop_service {
@@ -176,7 +195,17 @@ function stop_service {
     # Stop a service
     read -p "Enter the service name: " service
     service $service stop
+    main_menu
 }
+
+# Define function for back to main menu.
+function back_main_menu {
+    
+    # Call the main menu
+    main_menu
+
+}
+
 
 # Define the main menu
 
@@ -221,6 +250,9 @@ case $choice in
                 show_process
                 ;;
             4)
+                back_main_menu
+                ;;
+            5)
                 exit
                 ;;
             *)
@@ -252,6 +284,9 @@ case $choice in
                 modify_ip
                 ;;
             3)
+                back_main_menu
+                ;;
+            4)
                 exit
                 ;;
             *)
@@ -289,6 +324,9 @@ case $choice in
                 who_is_connected
                 ;;
             5)
+                back_main_menu
+                ;;
+            6)
                 exit
                 ;;
             *)
@@ -332,6 +370,9 @@ case $choice in
                 stop_service
                 ;;
             7)
+                back_main_menu
+                ;;
+            8)
                 exit
                 ;;
             *)
