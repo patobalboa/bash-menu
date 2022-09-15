@@ -19,6 +19,7 @@ NETWORK=( "Network Info" "Network Usage" "Modify IP" "Back Main Menu"  "Exit" )
 USERS=("List Users" "Add User" "Modify User" "Delete User" "Who is connected" "Back Main Menu"  "Exit" )
 SERVICES=( "Service Info" "Service Usage" "Show specific process" "Kill Process" "Start Service" "Restart Service" "Stop Service" "Back Main Menu" "Exit" )
 
+
 # Define the functions for the tasks
 function system_info {
     echo "System Info"
@@ -211,10 +212,10 @@ function back_main_menu {
 
 function main_menu {
 
-    # Clear the screen if the script is run for the first time.
-    if [ $first_run -eq 1 ]; then
-        clear
-    fi
+    # Clear the screen
+    clear
+
+    echo "\n\n===================================="
 
     # Show the main menu
     echo "Main Menu"
@@ -243,8 +244,7 @@ function main_menu {
 
 function system_menu {
 
-    # Clear the screen
-    clear
+    echo "\n\n===================================="
 
     # Show the system submenu
     echo "System Menu"
@@ -260,11 +260,11 @@ function system_menu {
 
     # Call the task
     case $choice in
-        1) system_info ;;
-        2) disk_usage ;;
-        3) memory_usage ;;
-        4) show_process ;;
-        5) back_main_menu ;;
+        1) system_info && sleep 2 && system_menu ;;
+        2) disk_usage && sleep 2 && system_menu ;;
+        3) memory_usage && sleep 2 && system_menu ;;
+        4) show_process && sleep 2 && system_menu ;;
+        5) back_main_menu && sleep 2 && system_menu ;;
         6) exit ;;
         *) echo "Invalid choice" && sleep 2 && system_menu ;;
     esac
@@ -274,8 +274,7 @@ function system_menu {
 
 function network_menu {
 
-    # Clear the screen
-    clear
+    echo "\n\n===================================="
 
     # Show the network submenu
     echo "Network Menu"
@@ -291,10 +290,10 @@ function network_menu {
 
     # Call the task
     case $choice in
-        1) network_info ;;
-        2) network_usage ;;
-        3) modify_ip ;;
-        4) back_main_menu ;;
+        1) network_info && sleep 2 && network_menu ;;
+        2) network_usage && sleep 2 && network_menu ;;
+        3) modify_ip && sleep 2 && network_menu ;;
+        4) back_main_menu && sleep 2 && network_menu ;;
         5) exit ;;
         *) echo "Invalid choice" && sleep 2 && network_menu ;;
     esac
@@ -304,8 +303,8 @@ function network_menu {
 
 function users_menu {
 
-    # Clear the screen
-    clear
+    # Print line
+    echo "\n\n===================================="
 
     # Show the users submenu
     echo "Users Menu"
@@ -321,12 +320,12 @@ function users_menu {
 
     # Call the task
     case $choice in
-        1) add_user ;;
-        2) modify_user ;;
-        3) delete_user ;;
-        4) list_users ;;
-        5) who_is_connected ;;
-        6) back_main_menu ;;
+        1) add_user && sleep 2 && users_menu ;;
+        2) modify_user && sleep 2 && users_menu ;;
+        3) delete_user && sleep 2 && users_menu ;;
+        4) list_users && sleep 2 && users_menu ;;
+        5) who_is_connected && sleep 2 && users_menu ;;
+        6) back_main_menu && sleep 2 && users_menu ;;
         7) exit ;;
         *) echo "Invalid choice" && sleep 2 && users_menu ;;
     esac
@@ -336,8 +335,7 @@ function users_menu {
 
 function services_menu {
 
-    # Clear the screen
-    clear
+   echo "\n\n===================================="
 
     # Show the services submenu
     echo "Services Menu"
@@ -353,14 +351,14 @@ function services_menu {
 
     # Call the task
     case $choice in
-        1) service_info ;;
-        2) service_usage ;;
-        3) show_specific_process ;;
-        4) kill_process ;;
-        5) start_service ;;
-        6) restart_service ;;
-        7) stop_service ;;
-        8) back_main_menu ;;
+        1) service_info && sleep 2 && services_menu ;;
+        2) service_usage && sleep 2 && services_menu ;;
+        3) show_specific_process && sleep 2 && services_menu ;;
+        4) kill_process && sleep 2 && services_menu ;;
+        5) start_service  && sleep 2 && services_menu;;
+        6) restart_service && sleep 2 && services_menu ;;
+        7) stop_service && sleep 2 && services_menu ;;
+        8) back_main_menu && sleep 2 && services_menu ;;
         9) exit ;;
         *) echo "Invalid choice" && sleep 2 && services_menu ;;
     esac
@@ -369,8 +367,6 @@ function services_menu {
 # Call the main menu
 main_menu
 
-# Set the first run variable to 0
-first_run=0
 
 # End of script
 
