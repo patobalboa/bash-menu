@@ -200,7 +200,7 @@ function stop_service {
 }
 
 # Define function for back to main menu.
-function back_ {
+function back_main_menu {
     
     # Call the main menu
     main_menu
