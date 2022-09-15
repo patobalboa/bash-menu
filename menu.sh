@@ -239,170 +239,138 @@ function main_menu {
     esac
 }
 
-# Check the input and show the submenu or exit the script with a case statement.
+# Define function for the system submenu
 
-case $choice in
-    0)
-        # Show the submenu
-        echo "System Menu"
-        echo "==========="
-        echo "Select a task:"
-        for (( i=0; i<${#SYSTEM[@]}; i++ )); do
-            echo "$i) ${SYSTEM[$i]}"
-        done
+function system_menu {
 
-        # Read the input
-        read -p "Enter your choice: " choice
+    # Clear the screen
+    clear
 
-        # Check the input and execute the task or exit the script with a case statement.
-        case $choice in
-            0)
-                system_info
-                ;;
-            1)
-                disk_usage
-                ;;
-            2)
-                memory_usage
-                ;;
-            3)
-                show_process
-                ;;
-            4)
-                back_main_menu
-                ;;
-            5)
-                exit
-                ;;
-            *)
-                echo "Invalid input"
-                ;;
-        esac
-        ;;
-    1)
-        # Show the submenu
-        echo "Network Menu"
-        echo "==========="
-        echo "Select a task:"
-        for (( i=0; i<${#NETWORK[@]}; i++ )); do
-            echo "$i) ${NETWORK[$i]}"
-        done
+    # Show the system submenu
+    echo "System Menu"
+    echo "Select a task:"
 
-        # Read the input
-        read -p "Enter your choice: " choice
+    # Show the tasks
+    for (( i=0; i<${#SYSTEM[@]}; i++ )); do
+        echo "$((i+1)) - ${SYSTEM[$i]}"
+    done
 
-        # Check the input and execute the task or exit the script with a case statement.
-        case $choice in
-            0)
-                network_info
-                ;;
-            1)
-                network_usage
-                ;;
-            2)
-                modify_ip
-                ;;
-            3)
-                back_main_menu
-                ;;
-            4)
-                exit
-                ;;
-            *)
-                echo "Invalid input"
-                ;;
-        esac
-        ;;
-    2)
-        # Show the submenu
-        echo "Users Menu"
-        echo "==========="
-        echo "Select a task:"
-        for (( i=0; i<${#USERS[@]}; i++ )); do
-            echo "$i) ${USERS[$i]}"
-        done
+    # Read the input
+    read -p "Enter your choice: " choice
 
-        # Read the input
-        read -p "Enter your choice: " choice
+    # Call the task
+    case $choice in
+        1) system_info ;;
+        2) disk_usage ;;
+        3) memory_usage ;;
+        4) show_process ;;
+        5) back_main_menu ;;
+        6) exit ;;
+        *) echo "Invalid choice" && sleep 2 && system_menu ;;
+    esac
+}
 
-        # Check the input and execute the task or exit the script with a case statement.
-        case $choice in
-            0)
-                list_users
-                ;;
-            1)
-                add_user
-                ;;
-            2)
-                modify_user
-                ;;
-            3)
-                delete_user
-                ;;
-            4)
-                who_is_connected
-                ;;
-            5)
-                back_main_menu
-                ;;
-            6)
-                exit
-                ;;
-            *)
-                echo "Invalid input"
-                ;;
-        esac
-        ;;
-    3)
-        # Show the submenu
-        echo "Services Menu"
-        echo "==========="
-        echo "Select a task:"
-        for (( i=0; i<${#SERVICES[@]}; i++ )); do
-            echo "$i) ${SERVICES[$i]}"
-        done
+# Define function for the network submenu
 
-        # Read the input
-        read -p "Enter your choice: " choice
+function network_menu {
 
-        # Check the input and execute the task or exit the script with a case statement.
-        case $choice in
-            0)
-                service_info
-                ;;
-            1)
-                service_usage
-                ;;
-            2)
-                show_specific_process
-                ;;
-            3)
-                kill_process
-                ;;
-            4)
-                start_service
-                ;;
-            5)
-                restart_service
-                ;;
-            6)
-                stop_service
-                ;;
-            7)
-                back_main_menu
-                ;;
-            8)
-                exit
-                ;;
-            *)
-                echo "Invalid input"
-                ;;
-        esac
-        ;;
-    4)
-        exit
-        ;;  
-    *)
-        echo "Invalid input"
-        ;;
-esac
+    # Clear the screen
+    clear
+
+    # Show the network submenu
+    echo "Network Menu"
+    echo "Select a task:"
+
+    # Show the tasks
+    for (( i=0; i<${#NETWORK[@]}; i++ )); do
+        echo "$((i+1)) - ${NETWORK[$i]}"
+    done
+
+    # Read the input
+    read -p "Enter your choice: " choice
+
+    # Call the task
+    case $choice in
+        1) network_info ;;
+        2) network_usage ;;
+        3) modify_ip ;;
+        4) back_main_menu ;;
+        5) exit ;;
+        *) echo "Invalid choice" && sleep 2 && network_menu ;;
+    esac
+}
+
+# Define function for the users submenu
+
+function users_menu {
+
+    # Clear the screen
+    clear
+
+    # Show the users submenu
+    echo "Users Menu"
+    echo "Select a task:"
+
+    # Show the tasks
+    for (( i=0; i<${#USERS[@]}; i++ )); do
+        echo "$((i+1)) - ${USERS[$i]}"
+    done
+
+    # Read the input
+    read -p "Enter your choice: " choice
+
+    # Call the task
+    case $choice in
+        1) add_user ;;
+        2) modify_user ;;
+        3) delete_user ;;
+        4) list_users ;;
+        5) who_is_connected ;;
+        6) back_main_menu ;;
+        7) exit ;;
+        *) echo "Invalid choice" && sleep 2 && users_menu ;;
+    esac
+}
+
+# Define function for the services submenu
+
+function services_menu {
+
+    # Clear the screen
+    clear
+
+    # Show the services submenu
+    echo "Services Menu"
+    echo "Select a task:"
+
+    # Show the tasks
+    for (( i=0; i<${#SERVICES[@]}; i++ )); do
+        echo "$((i+1)) - ${SERVICES[$i]}"
+    done
+
+    # Read the input
+    read -p "Enter your choice: " choice
+
+    # Call the task
+    case $choice in
+        1) service_info ;;
+        2) service_usage ;;
+        3) show_specific_process ;;
+        4) kill_process ;;
+        5) start_service ;;
+        6) restart_service ;;
+        7) stop_service ;;
+        8) back_main_menu ;;
+        9) exit ;;
+        *) echo "Invalid choice" && sleep 2 && services_menu ;;
+    esac
+}
+
+# Call the main menu
+main_menu
+
+# Set the first run variable to 0
+first_run=0
+
+# End of script
+
