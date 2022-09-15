@@ -2,33 +2,52 @@
 
 ## Description
 
-This is a simple bash script that allows you to create a menu with options.
+This is a bash script that allows you admin your server with a menu.
 
-## Usage
 
-```bash
-$ ./menu.sh
-```
+## Instructions
 
-## Options
+    Create a new user and add it to the sudo group (sudoers).
+    
+    ```bash
+    useradd -m -G sudo -s /bin/bash username
+    ```
 
-```bash
-$ ./menu.sh -h
-```
+    Asign a password to the new user.
+    
+    ```bash
+    passwd username
+    ```
 
-## Parameters
+    Clone the repository.
+    
+    ```bash
+    git clone https://github.com/patobalboa/bash-menu.git
+    ```
 
-```bash
-$ ./menu.sh -p
-```
+    Change permissions.
+    
+    ```bash
+    chmod +x bash-menu/menu.sh
+    ```
 
-## Examples
+    Make the script run at the user's login as sudo.
 
-```bash
-$ ./menu.sh -e
-```
+    ```bash
+    echo "bash /home/username/bash-menu/menu.sh" >> /home/username/.bashrc
+    ```
+
+    Test the script.
+
+    ```bash
+    su - username
+    ```
+
 
 ## Powered by
 
-[![Powered by Codeplus](https://img.shields.io/badge/Powered%20by-Codeplus-blue.svg)](Codeplus)
-
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.codeplus.cl/wp-content/uploads/2022/06/codeplus_blanco_06.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://www.codeplus.cl/wp-content/uploads/2022/09/codeplus_06.png">
+  <img alt="CodePlus.cl" src="https://www.codeplus.cl/wp-content/uploads/2022/06/codeplus_blanco_06.png">
+</picture>
