@@ -7,37 +7,36 @@ This is a bash script that allows you admin your server with a menu.
 
 ## Instructions
 
-    Create a new user and add it to the sudo group (sudoers).
+Create a new user and add it to the sudo group (sudoers).
     
     ```bash
     useradd -m -G sudo -s /bin/bash username
     ```
-
-    Asign a password to the new user.
+Asign a password to the new user.
     
     ```bash
     passwd username
     ```
-
-    Clone the repository.
+    
+Clone the repository.
     
     ```bash
     git clone https://github.com/patobalboa/bash-menu.git
     ```
 
-    Change permissions.
+Change permissions.
     
     ```bash
     chmod +x bash-menu/menu.sh
     ```
 
-    Make the script run at the user's login as sudo.
+Make the script run at the user's login as sudo.
 
     ```bash
     echo "bash /home/username/bash-menu/menu.sh" >> /home/username/.bashrc
     ```
 
-    Test the script.
+Test the script.
 
     ```bash
     su - username
