@@ -73,6 +73,9 @@ function network_usage {
 function modify_ip {
     echo "Modify IP"
 
+    # Print a Warning message
+    echo ""
+
     # Modify the IP
     echo "Enter the interface name: "
     read interface
