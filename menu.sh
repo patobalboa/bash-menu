@@ -1,13 +1,7 @@
 #!/bin/bash
 
 # This script is used to create a menu for administartion tasks with submenus.
-
-# The first menu is the main menu, which is used to select the submenus.
-# The second menu is the submenu, which is used to select the tasks.
-
-# The script is written in a way that it can be used for multiple submenus.
-# Define the submenus in the array SUBMENUS.
-
+# The script can be used to users without knowledge of the Linux command line
 
 
 # Define the submenus
