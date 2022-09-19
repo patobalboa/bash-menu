@@ -1,7 +1,5 @@
 # Bash-Menu
 
-## Description
-
 This is a bash script that allows you admin your server with a menu.
 This script is for users who are not familiar with the command line.
 
